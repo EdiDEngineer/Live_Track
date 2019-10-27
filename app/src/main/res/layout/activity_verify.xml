@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#e4e4e4"
+    android:screenOrientation="portrait"
     tools:context=".MainActivity">
 
     <TextView
@@ -31,29 +32,34 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="64dp"
+        android:layout_height="120dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="288dp"
+        android:layout_marginTop="248dp"
         android:layout_marginRight="8dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="24dp"
+
             android:orientation="horizontal">
 
-            <com.github.glomadrian.codeinputlib.CodeInput
-                android:id="@+id/input_code"
-                android:layout_width="match_parent"
+            <EditText
+                android:id="@+id/code1"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:animate_on_complete="false"
-                app:code_text_color="@android:color/black"
-                app:error_color="@android:color/holo_red_dark"
-                app:input_type="numeric"
-                app:underline_color="@android:color/black"
-                app:underline_selected_color="#457ad1" />
+                android:layout_weight="1"
+                android:inputType="number"
+                android:maxLength="1"
+                android:maxLines="1">
+
+            </EditText>
+
 
         </LinearLayout>
 
@@ -62,9 +68,12 @@
     <Button
         android:id="@+id/verify"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="484dp"
-        android:backgroundTint="@android:color/black"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@android:color/black"
         android:drawableRight="@drawable/ic_action_arrow_forward"
         android:gravity="start|center_vertical"
         android:onClick="verify"
