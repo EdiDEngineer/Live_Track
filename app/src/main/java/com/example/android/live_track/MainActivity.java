@@ -19,7 +19,9 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.app.NotificationChannel;
+import android.util.JsonReader;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,7 +44,8 @@ public class MainActivity extends AppCompatActivity {
     private ProgressBar mProgressBar;
     public static URL mUrl;
     Boolean mWrong = false;
-    TextView input;
+    EditText input;
+    String mX;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +65,10 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this,NoInternetActivity.class);
             startActivity(intent);
         }
+
+        try {
+             mX = getJson("http://live-track-api.herokuapp.com/api/users/verify?accountKey=512a1e");
+        }catch (Exception e){}
 
 
 
@@ -95,10 +102,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void verifyUser(View view){
         input = findViewById(R.id.code1);
-        final String key = (String) input.getText();
+        final String key = input.getText().toString();
         SharedPreferenceUtil.setPrefString(view.getContext(),"keyPref", key);
 
-        mProgressBar = view.findViewById(R.id.progressBar);
+
 
         AsyncTask task = new AsyncTask() {
             @Override
@@ -107,42 +114,53 @@ public class MainActivity extends AppCompatActivity {
                 try{
                     String json = getJson(url);
                     JSONObject jsonObject = new JSONObject(json);
+                    JSONObject jsonObject1 = jsonObject.getJSONObject("data");
                     if(jsonObject.getString("ok") != "true"){mWrong = true; return null;}
-                    SharedPreferenceUtil.setPrefString(getApplicationContext(),"namePref", jsonObject.getString("name"));
-                    SharedPreferenceUtil.setPrefString(getApplicationContext(),"emailPref", jsonObject.getString("name"));
+                    SharedPreferenceUtil.setPrefString(getApplicationContext(),"namePref", jsonObject1.getString("name"));
+                    SharedPreferenceUtil.setPrefString(getApplicationContext(),"emailPref", jsonObject1.getString("email"));
+
+
+
 
                 }
-                catch (Exception e){Toast.makeText(getApplicationContext(),"GetJsonError", Toast.LENGTH_SHORT); finishActivity(1);}
+                catch (Exception e){//Toast.makeText(getApplicationContext(),"GetJsonError", Toast.LENGTH_SHORT);
+                     finishActivity(1);}
 
                 return null;
             }
 
             @Override
             protected void onPreExecute() {
-                mProgressBar.setVisibility(View.VISIBLE);
                 super.onPreExecute();
+                mProgressBar = findViewById(R.id.progressBar);
+                mProgressBar.setVisibility(View.VISIBLE);
             }
 
             @Override
             protected void onPostExecute(Object o) {
-                mProgressBar.setVisibility(View.INVISIBLE);
                 super.onPostExecute(o);
+                mProgressBar = findViewById(R.id.progressBar);
+                mProgressBar.setVisibility(View.INVISIBLE);
+
+
+                if(!mWrong){
+                    mSettings.edit().putBoolean("signedUp", false).commit();
+                    Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+                    startActivity(intent);
+                }
+                else{
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setTitle("Login Error!")
+                            .setMessage("Retype your password")
+                            .show();
+                }
+
             }
         };
 
         task.execute();
 
-        if(!mWrong){
-            mSettings.edit().putBoolean("signedUp", false).commit();
-            Intent intent = new Intent(this, DetailActivity.class);
-            startActivity(intent);
-        }
-        else{
-            new AlertDialog.Builder(this)
-                    .setTitle("Longin Error!")
-                    .setMessage("Retype your password")
-                    .show();
-        }
+
 
 
     }
@@ -172,12 +190,11 @@ public class MainActivity extends AppCompatActivity {
         Scanner scanner = new Scanner(stream);
         scanner.useDelimiter("\\A");
         if(scanner.hasNext()){
-            connection.disconnect();
+
             return scanner.next();
         }
         else {
             Toast.makeText(this.getApplicationContext(),"No data",Toast.LENGTH_LONG).show();
-            connection.disconnect();
             return null;
         }
 

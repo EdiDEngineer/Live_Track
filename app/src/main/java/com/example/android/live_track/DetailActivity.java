@@ -39,8 +39,11 @@ public class DetailActivity extends AppCompatActivity {
             startActivity(intent);
         }
 
-        String name = SharedPreferenceUtil.getPrefString(getApplicationContext(),"namePref");
-        String email = SharedPreferenceUtil.getPrefString(getApplicationContext(),"emailPref");
+        String name = "Smart Emmanuel";
+        name = SharedPreferenceUtil.getPrefString(getApplicationContext(),"namePref");
+        String email = "smartemma03@gmail.com";
+        email = SharedPreferenceUtil.getPrefString(getApplicationContext(),"emailPref");
+
         String key = SharedPreferenceUtil.getPrefString(getApplicationContext(),"keyPref");
 
         nameText.setText(name);
