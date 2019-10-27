@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verify);
-        editText1 = findViewById(R.id.code1);
+      /*  editText1 = findViewById(R.id.code1);
         editText2 = findViewById(R.id.code2);
         editText3 = findViewById(R.id.code3);
         editText4 = findViewById(R.id.code4);
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         editText6 = findViewById(R.id.code6);
         if (editText1.length()==1) {
             editText2.requestFocus();
-        }
+        }*/
     }
 
 
