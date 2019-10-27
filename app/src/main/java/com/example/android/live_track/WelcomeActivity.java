@@ -18,9 +18,8 @@ public class WelcomeActivity extends AppCompatActivity implements CompoundButton
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         simpleSwitch =  findViewById(R.id.switches);
-        text =findViewById(R.id.switch2);
-        text2 =findViewById(R.id.switch1);
-
+        text = findViewById(R.id.switch2);
+        text2 = findViewById(R.id.switch1);
 
         if (simpleSwitch != null) {
             simpleSwitch.setOnCheckedChangeListener(this);
@@ -32,7 +31,6 @@ public class WelcomeActivity extends AppCompatActivity implements CompoundButton
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         if(isChecked) {
             text.setVisibility(View.VISIBLE);
-            Toast.makeText(this,"test",Toast.LENGTH_SHORT).show();
             text2.setVisibility(View.GONE);
 
         } else {
