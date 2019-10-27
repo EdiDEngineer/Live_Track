@@ -54,65 +54,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:inputType="number"
-                android:maxLength="1"
+                android:maxLength="6"
                 android:maxLines="1">
 
             </EditText>
 
-            <EditText
-                android:id="@+id/code2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:inputType="number"
-                android:maxLength="1"
-                android:maxLines="1">
-
-            </EditText>
-
-            <EditText
-                android:id="@+id/code3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:inputType="number"
-                android:maxLength="1"
-                android:maxLines="1">
-
-            </EditText>
-
-            <EditText
-                android:id="@+id/code4"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:inputType="number"
-                android:maxLength="1"
-                android:maxLines="1">
-
-            </EditText>
-
-            <EditText
-                android:id="@+id/code5"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:inputType="number"
-                android:maxLength="1"
-                android:maxLines="1">
-
-            </EditText>
-
-            <EditText
-                android:id="@+id/code6"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:inputType="number"
-                android:maxLength="1"
-                android:maxLines="1">
-
-            </EditText>
         </LinearLayout>
 
 
