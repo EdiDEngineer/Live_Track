@@ -32,35 +32,28 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:layout_marginLeft="16dp"
+        android:layout_height="134dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="248dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginRight="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-        <LinearLayout
+
+
+        <com.poovam.pinedittextfield.LinePinField
+            android:layout_gravity = "center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="24dp"
-
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/code1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:inputType="number"
-                android:maxLength="6"
-                android:maxLines="1">
-
-            </EditText>
-
-        </LinearLayout>
-
+            android:inputType="number"
+            android:textSelectHandle="@drawable/text_handle"
+            app:bottomTextPaddingDp="15dp"
+            app:highlightColor="#000000"
+            app:distanceInBetween="10dp"
+            app:highlightType="allFields"
+            app:isCursorEnabled="true"
+            app:noOfFields="6" />
 
 
     </androidx.cardview.widget.CardView>
