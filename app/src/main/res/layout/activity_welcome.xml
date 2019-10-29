@@ -7,6 +7,17 @@
     tools:context=".WelcomeActivity"
     >
 
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="256dp"
+        android:text="Tracking OFF"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView2" />
+
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="96dp"
